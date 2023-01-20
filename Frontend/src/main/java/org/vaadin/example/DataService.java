@@ -28,9 +28,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class DataService {
-    private static final String urlPrefix = "http://localhost:8080/Productos";
+    private static final String urlPrefix = "http://localhost:8082/Productos";
 
-    public static ArrayList<Producto> getTodasPersonas(ArrayList<Producto> listaProductos) throws URISyntaxException {
+    public static ArrayList<Producto> getProductos(ArrayList<Producto> listaProductos) throws URISyntaxException {
 
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(new URI(urlPrefix)).GET().build();
         Gson gson = new Gson();
@@ -55,10 +55,10 @@ public class DataService {
 
 
 
-    /*public static ArrayList<ZonaBasicaSalud> aniadirDatosLista(@RequestBody ZonaBasicaSalud zonaaniadir, ArrayList<ZonaBasicaSalud> listaDevuelta){
+    public static ArrayList<Producto> aniadirDatosLista(Producto productoNuevo, ArrayList<Producto> listaProductos){
         Gson g = new Gson();
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        String datospasar = zonaaniadir.mostrarJson();
+        String datospasar = productoNuevo.mostrarJson();
         StringEntity entidad = null;
         try {
             entidad = new StringEntity(datospasar);
@@ -69,7 +69,7 @@ public class DataService {
             CloseableHttpResponse response = null;
             response = httpClient.execute(requestpuesta);
             String respuestaActual = new BasicResponseHandler().handleResponse(response);
-            listaDevuelta = g.fromJson(respuestaActual, new TypeToken<ArrayList<ZonaBasicaSalud>>(){}.getType());
+            listaProductos = g.fromJson(respuestaActual, new TypeToken<ArrayList<Producto>>(){}.getType());
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         } catch (HttpResponseException e) {
@@ -80,8 +80,8 @@ public class DataService {
             throw new RuntimeException(e);
         }
 
-        return listaDevuelta;
-    }*/
+        return listaProductos;
+    }
 
 
 

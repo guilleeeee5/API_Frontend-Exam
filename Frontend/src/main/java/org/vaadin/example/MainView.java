@@ -14,6 +14,9 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+
 /**
  * A sample Vaadin view class.
  * <p>
@@ -45,6 +48,7 @@ public class MainView extends VerticalLayout {
     public MainView(@Autowired GreetService service) {
         HorizontalLayout horizontal1= new HorizontalLayout();
         HorizontalLayout horizontal2= new HorizontalLayout();
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         // Use TextField for standard text input
         Label etiqueta1 = new Label("Nombre:");
         TextField texto1 = new TextField();
@@ -62,6 +66,13 @@ public class MainView extends VerticalLayout {
         grid.addColumn(Producto::getCategoria).setHeader("Categoria");
         grid.addColumn(Producto::getPrecio).setHeader("Precio");
         grid.addColumn(Producto::getEAN13).setHeader("EAN13");
+
+        try {
+            listaProductos = DataService.getProductos(listaProductos);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        grid.setItems(listaProductos);
 
         horizontal1.add(etiqueta1, texto1, etiqueta2, texto2, etiqueta3, texto3, etiqueta4, texto4);
         add(horizontal1, boton);

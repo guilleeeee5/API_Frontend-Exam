@@ -46,4 +46,13 @@ public class Producto {
     public void setEAN13(float EAN13) {
         this.EAN13 = EAN13;
     }
+
+    public String mostrarJson() {
+        return "{\n" +
+                "\"nombre\": " + "\"" + nombre + "\"," + "\n" +
+                "\"categoria\": " + "\"" + categoria  + "\"," + "\n" +
+                "\"precio\": " + precio  +  ",\n" +
+                "\"ean13\": " + EAN13 + "\"" + "\n" +
+                "}";
+    }
 }
