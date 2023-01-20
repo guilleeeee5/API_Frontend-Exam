@@ -63,7 +63,13 @@ public class MainView extends VerticalLayout {
         grid.addColumn(Producto::getPrecio).setHeader("Precio");
         grid.addColumn(Producto::getEAN13).setHeader("EAN13");
 
-        
+        horizontal1.add(etiqueta1, texto1, etiqueta2, texto2, etiqueta3, texto3, etiqueta4, texto4);
+        add(horizontal1, boton);
+
+        horizontal2.add(grid);
+        add(horizontal2, grid);
+
+
 
     }
 
