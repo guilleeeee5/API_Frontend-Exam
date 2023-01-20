@@ -46,4 +46,14 @@ public class Producto {
     public void setEAN13(String ean13) {
         this.ean13 = ean13;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", precio=" + precio +
+                ", ean13='" + ean13 + '\'' +
+                '}';
+    }
 }
