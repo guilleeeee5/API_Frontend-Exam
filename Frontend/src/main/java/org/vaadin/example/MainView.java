@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -53,6 +54,17 @@ public class MainView extends VerticalLayout {
         TextField texto3 = new TextField();
         Label etiqueta4 = new Label("EAN13:");
         TextField texto4 = new TextField();
+
+        Button boton = new Button("Añadir");
+
+        Grid<Producto> grid = new Grid<>(Producto.class, false);
+        grid.addColumn(Producto::getNombre).setHeader("Nombre");
+        grid.addColumn(Producto::getCategoria).setHeader("Categoria");
+        grid.addColumn(Producto::getPrecio).setHeader("Precio");
+        grid.addColumn(Producto::getEAN13).setHeader("EAN13");
+
+        
+
     }
 
 }
