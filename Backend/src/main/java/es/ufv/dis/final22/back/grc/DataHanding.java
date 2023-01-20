@@ -12,15 +12,13 @@ public class DataHanding {
         return listaAux;
     }
 
-    public boolean CompararObjetos(ZonaBasicaSaludMayores60 Obj1, ZonaBasicaSaludMayores60 Obj2){
+    public boolean CompararObjetos(Producto Obj1, Producto Obj2){
         //En esta funcion se comparan dos objetos entre sí para saber si son iguales o no, se comparan todos sus atributos
-        if(Obj1.getCodigo_geometria().equals(Obj2.getCodigo_geometria())){
-            if(Obj1.getZona_basica_salud().equals((Obj2.getZona_basica_salud()))){
-                if(Obj1.getCasos_confirmados_P60mas_ultimos_14dias() == Obj2.getCasos_confirmados_P60mas_ultimos_14dias()){
-                    if(Obj1.getTasa_incidencia_acumulada_P60mas_ultimos_14dias() == Obj2.getTasa_incidencia_acumulada_P60mas_ultimos_14dias()){
-                        if(Obj1.getFecha_informe().equals(Obj2.getFecha_informe())){
-                            return true;
-                        }
+        if(Obj1.getNombre().equals(Obj2.getNombre())){
+            if(Obj1.getCategoria().equals((Obj2.getCategoria()))){
+                if(Obj1.getPrecio() == Obj2.getPrecio()){
+                    if(Obj1.getEAN13().equals((Obj2.getEAN13()))){
+                        return true;
                     }
                 }
             }

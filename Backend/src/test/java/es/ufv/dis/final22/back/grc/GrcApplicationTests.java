@@ -1,5 +1,6 @@
 package es.ufv.dis.final22.back.grc;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,6 +14,11 @@ class GrcApplicationTests {
 
 	@Test
 	void contextLoads() {
+	}
+	@Test
+	void CrearProductoTest(){
+		Producto Juancho = new Producto("Juancho", "nombre" ,(float)3.56 ,"12783747384");
+		Assert.assertNotNull(Juancho);
 	}
 	@Test
 	void AniadirProductoTest(){
@@ -38,8 +44,10 @@ class GrcApplicationTests {
 		}
 		else
 		{
-			fail(" No añado correctamente un objeto de tipo zbs  ");
+			fail(" No añado correctamente un objeto de tipo Producto");
 		}
 	}
+
+
 
 }
