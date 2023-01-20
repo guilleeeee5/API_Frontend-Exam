@@ -1,15 +1,23 @@
 package org.vaadin.example;
 
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 /**
  * A sample Vaadin view class.
@@ -40,27 +48,61 @@ public class MainView extends VerticalLayout {
      * @param service The message service. Automatically injected Spring managed bean.
      */
     public MainView(@Autowired GreetService service) {
+        HorizontalLayout horizontal1= new HorizontalLayout();
+        HorizontalLayout horizontal2= new HorizontalLayout();
 
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         // Use TextField for standard text input
-        TextField textField = new TextField("Your name");
-        textField.addThemeName("bordered");
+        Label etiqueta1 = new Label("Nombre:");
+        TextField texto1 = new TextField();
+        Label etiqueta2 = new Label("Categoría:");
+        TextField texto2 = new TextField();
+        Label etiqueta3 = new Label("Precio:");
+        TextField texto3 = new TextField();
+        Label etiqueta4 = new Label("EAN13:");
+        TextField texto4 = new TextField();
 
-        // Button click listeners can be defined as lambda expressions
-        Button button = new Button("Say hello",
-                e -> Notification.show(service.greet(textField.getValue())));
+        Button boton = new Button("Añadir");
 
-        // Theme variants give you predefined extra styles for components.
-        // Example: Primary button has a more prominent look.
-        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        Grid<Producto> grid = new Grid<>(Producto.class, false);
+        grid.addColumn(Producto::getNombre).setHeader("Nombre");
+        grid.addColumn(Producto::getCategoria).setHeader("Categoria");
+        grid.addColumn(Producto::getPrecio).setHeader("Precio");
+        grid.addColumn(Producto::getean13).setHeader("EAN13");
 
-        // You can specify keyboard shortcuts for buttons.
-        // Example: Pressing enter in this view clicks the Button.
-        button.addClickShortcut(Key.ENTER);
+        try {
+            listaProductos = DataService.getProductos(listaProductos);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        grid.setItems(listaProductos);
 
-        // Use custom CSS classes to apply styling. This is defined in shared-styles.css.
-        addClassName("centered-content");
+        horizontal1.add(etiqueta1, texto1, etiqueta2, texto2, etiqueta3, texto3, etiqueta4, texto4);
+        add(horizontal1, boton);
 
-        add(textField, button);
+        boton.addClickListener(new ComponentEventListener<ClickEvent<Button>>() {
+            @Override
+            public void onComponentEvent(ClickEvent<Button> event) {
+                ArrayList<Producto> listaAux = new ArrayList<>();
+
+                Producto objeto = new Producto(texto1.getValue(), texto2.getValue(), Float.valueOf(texto3.getValue()), texto4.getValue());
+                listaAux = DataService.aniadirDatosLista(objeto, listaAux);
+
+
+                texto1.setValue("");
+                texto2.setValue("");
+                texto3.setValue("");
+                texto4.setValue("");
+
+                grid.setItems(listaAux);
+            }
+        });
+
+        horizontal2.add(grid);
+        add(horizontal2, grid);
+
+
+
     }
 
 }
