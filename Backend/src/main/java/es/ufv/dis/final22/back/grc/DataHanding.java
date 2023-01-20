@@ -12,6 +12,21 @@ public class DataHanding {
         return listaAux;
     }
 
+    public boolean CompararObjetos(Producto Obj1, Producto Obj2){
+        //En esta funcion se comparan dos objetos entre sí para saber si son iguales o no, se comparan todos sus atributos
+        if(Obj1.getNombre().equals(Obj2.getNombre())){
+            if(Obj1.getCategoria().equals((Obj2.getCategoria()))){
+                if(Obj1.getPrecio() == Obj2.getPrecio()){
+                    if(Obj1.getEAN13().equals((Obj2.getEAN13()))){
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
 
 
 }
