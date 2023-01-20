@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <!-- Vaadin project from https://github.com/vaadin/skeleton-starter-flow-spring -->
     <groupId>es.ufv.dis.final22.front</groupId>
-    <artifactId>.grc</artifactId>
+    <artifactId>grc</artifactId>
     <name>Project base for Spring Boot and Vaadin Flow</name>
     <version>0.1</version>
     <packaging>jar</packaging>
