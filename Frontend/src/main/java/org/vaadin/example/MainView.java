@@ -4,8 +4,10 @@ import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -41,7 +43,8 @@ public class MainView extends VerticalLayout {
      * @param service The message service. Automatically injected Spring managed bean.
      */
     public MainView(@Autowired GreetService service) {
-
+        HorizontalLayout horizontal1= new HorizontalLayout();
+        HorizontalLayout horizontal2= new HorizontalLayout();
         // Use TextField for standard text input
         Label etiqueta1 = new Label("Nombre:");
         TextField texto1 = new TextField();
@@ -51,6 +54,23 @@ public class MainView extends VerticalLayout {
         TextField texto3 = new TextField();
         Label etiqueta4 = new Label("EAN13:");
         TextField texto4 = new TextField();
+
+        Button boton = new Button("Añadir");
+
+        Grid<Producto> grid = new Grid<>(Producto.class, false);
+        grid.addColumn(Producto::getNombre).setHeader("Nombre");
+        grid.addColumn(Producto::getCategoria).setHeader("Categoria");
+        grid.addColumn(Producto::getPrecio).setHeader("Precio");
+        grid.addColumn(Producto::getEAN13).setHeader("EAN13");
+
+        horizontal1.add(etiqueta1, texto1, etiqueta2, texto2, etiqueta3, texto3, etiqueta4, texto4);
+        add(horizontal1, boton);
+
+        horizontal2.add(grid);
+        add(horizontal2, grid);
+
+
+
     }
 
 }
