@@ -1,5 +1,7 @@
 package org.vaadin.example;
 
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -48,6 +50,7 @@ public class MainView extends VerticalLayout {
     public MainView(@Autowired GreetService service) {
         HorizontalLayout horizontal1= new HorizontalLayout();
         HorizontalLayout horizontal2= new HorizontalLayout();
+
         ArrayList<Producto> listaProductos = new ArrayList<>();
         // Use TextField for standard text input
         Label etiqueta1 = new Label("Nombre:");
@@ -65,7 +68,7 @@ public class MainView extends VerticalLayout {
         grid.addColumn(Producto::getNombre).setHeader("Nombre");
         grid.addColumn(Producto::getCategoria).setHeader("Categoria");
         grid.addColumn(Producto::getPrecio).setHeader("Precio");
-        grid.addColumn(Producto::getEAN13).setHeader("EAN13");
+        grid.addColumn(Producto::getean13).setHeader("EAN13");
 
         try {
             listaProductos = DataService.getProductos(listaProductos);
@@ -76,6 +79,24 @@ public class MainView extends VerticalLayout {
 
         horizontal1.add(etiqueta1, texto1, etiqueta2, texto2, etiqueta3, texto3, etiqueta4, texto4);
         add(horizontal1, boton);
+
+        boton.addClickListener(new ComponentEventListener<ClickEvent<Button>>() {
+            @Override
+            public void onComponentEvent(ClickEvent<Button> event) {
+                ArrayList<Producto> listaAux = new ArrayList<>();
+
+                Producto objeto = new Producto(texto1.getValue(), texto2.getValue(), Float.valueOf(texto3.getValue()), texto4.getValue());
+                listaAux = DataService.aniadirDatosLista(objeto, listaAux);
+
+
+                texto1.setValue("");
+                texto2.setValue("");
+                texto3.setValue("");
+                texto4.setValue("");
+
+                grid.setItems(listaAux);
+            }
+        });
 
         horizontal2.add(grid);
         add(horizontal2, grid);

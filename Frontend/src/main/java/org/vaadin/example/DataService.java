@@ -50,11 +50,6 @@ public class DataService {
         return listaProductos;
     }
 
-
-
-
-
-
     public static ArrayList<Producto> aniadirDatosLista(Producto productoNuevo, ArrayList<Producto> listaProductos){
         Gson g = new Gson();
         CloseableHttpClient httpClient = HttpClients.createDefault();

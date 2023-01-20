@@ -4,13 +4,13 @@ public class Producto {
     private String nombre;
     private String categoria;
     private float precio;
-    private float EAN13;
+    private String ean13;
 
-    public Producto(String nombre, String categoria, float precio, float EAN13) {
+    public Producto(String nombre, String categoria, float precio, String ean13) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
-        this.EAN13 = EAN13;
+        this.ean13 = ean13;
     }
 
     public Producto(){}
@@ -39,12 +39,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public float getEAN13() {
-        return EAN13;
+    public String getean13() {
+        return ean13;
     }
 
-    public void setEAN13(float EAN13) {
-        this.EAN13 = EAN13;
+    public void setean13(String EAN13) {
+        this.ean13 = EAN13;
     }
 
     public String mostrarJson() {
@@ -52,7 +52,7 @@ public class Producto {
                 "\"nombre\": " + "\"" + nombre + "\"," + "\n" +
                 "\"categoria\": " + "\"" + categoria  + "\"," + "\n" +
                 "\"precio\": " + precio  +  ",\n" +
-                "\"ean13\": " + EAN13 + "\"" + "\n" +
+                "\"ean13\": " + ean13 + "\n" +
                 "}";
     }
 }
