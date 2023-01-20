@@ -23,6 +23,8 @@ public class Controller {
         lista = dataHanding.AnadirObjeto1(objeto1,"template.json");
         EscribirJson escribirJSON = new EscribirJson();
         escribirJSON.escribirObjeto1(lista);
+        EscribirPDF escribirPDF = new EscribirPDF();
+        escribirPDF.escribirPDF(lista);
         return lista;
     }
 
