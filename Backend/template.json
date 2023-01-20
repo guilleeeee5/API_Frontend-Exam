@@ -1,8 +1,1 @@
-[
-	{
-	"nombre": "producto",
-	"categoria": "categoria",
-	"precio": 3,
-	"EAN13": 0322500532677
-	}
-]
+[{"nombre":"producto","categoria":"categoria","precio":3.0,"EAN13":3.22500526E11},{"nombre":"hola","categoria":"categoria2","precio":10.0,"EAN13":0.0},{"nombre":"hola","categoria":"categoria2","precio":10.0,"EAN13":2.592884E7}]
