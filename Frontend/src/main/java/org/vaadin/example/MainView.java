@@ -6,6 +6,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -41,7 +42,8 @@ public class MainView extends VerticalLayout {
      * @param service The message service. Automatically injected Spring managed bean.
      */
     public MainView(@Autowired GreetService service) {
-
+        HorizontalLayout horizontal1= new HorizontalLayout();
+        HorizontalLayout horizontal2= new HorizontalLayout();
         // Use TextField for standard text input
         Label etiqueta1 = new Label("Nombre:");
         TextField texto1 = new TextField();
