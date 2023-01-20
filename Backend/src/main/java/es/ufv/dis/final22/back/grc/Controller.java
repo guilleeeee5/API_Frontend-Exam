@@ -8,19 +8,19 @@ import java.util.ArrayList;
 @RestController
 public class Controller {
 
-    @GetMapping("/Objeto1")
+    @GetMapping("/Productos")
     public ArrayList<Producto> listaObjeto1(){
         LeerJson reader = new LeerJson();
         //Leemos el reason e introducimos los elementos en un arraylist
-        ArrayList<Producto> lista = reader.LeerFicheroJson1("NombreFichero.json");
+        ArrayList<Producto> lista = reader.LeerFicheroJson1("template.json");
         //Mostramos los elementos leidos
         return lista;
     }
-    @PostMapping("/Objeto1")
-    public ArrayList<Producto> create(@RequestBody Objeto1 objeto1){
+    @PostMapping("/Productos")
+    public ArrayList<Producto> create(@RequestBody Producto objeto1){
         DataHanding dataHanding = new DataHanding();
         ArrayList<Producto> lista;
-        lista = dataHanding.AnadirObjeto1(objeto1,"NombreFichero.json");
+        lista = dataHanding.AnadirObjeto1(objeto1,"template.json");
         EscribirJson escribirJSON = new EscribirJson();
         escribirJSON.escribirObjeto1(lista);
         return lista;
