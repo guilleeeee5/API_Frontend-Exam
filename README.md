@@ -1,2 +1,5 @@
-# Template_Ordinaria-22-23
-Repository that contains a file with a little example of the data to be handled
+# Software Exam
+## I was able to make this project within 2 hours, having a final result of 9.7 out of 10.
+:bust_in_silhouette: Guillermo Ramírez Cárdenas <br>
+
+
